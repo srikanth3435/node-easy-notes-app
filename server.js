@@ -18,7 +18,8 @@ mongoose.Promise = global.Promise;
 
 // Connecting to the database
 mongoose.connect(dbConfig.url, {
-	useNewUrlParser: true
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 }).then(() => {
     console.log("Successfully connected to the database");    
 }).catch(err => {
@@ -34,9 +35,9 @@ app.get('/', (req, res) => {
 require('./app/routes/note.routes.js')(app);
 
 // listen for requests
-// app.listen(3000, () => {
-//     console.log("Server is listening on port 3000");
-// });
+app.listen(process.env.PORT  || 3000, () => {
+    console.log("Server is listening on port 3000");
+});
 
-var port_number = server.listen(process.env.PORT || 3000);
-app.listen(port_number);
+// var port_number = server.listen(process.env.PORT || 3000);
+// app.listen(port_number);
